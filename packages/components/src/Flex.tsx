@@ -1,4 +1,6 @@
 import React from 'react'
+import { Theme } from '@theme-ui/core'
+
 import { Box, BoxOwnProps, BoxProps } from './Box'
 import { ForwardRef } from './types'
 
@@ -11,14 +13,14 @@ export type FlexProps = BoxProps
  */
 export const Flex: ForwardRef<HTMLElement, FlexProps> = React.forwardRef(
   function Flex(props: FlexProps, ref) {
-    const { sx } = props;
+    const { sx } = props
     return (
       <Box
         ref={ref}
         {...props}
-        sx={theme => ({
+        sx={(theme: Theme) => ({
           display: 'flex',
-          ...(typeof sx === "function" ? sx(theme) : sx),
+          ...(typeof sx === 'function' ? sx(theme) : sx),
         })}
       />
     )
