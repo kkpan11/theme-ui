@@ -11,14 +11,15 @@ export type FlexProps = BoxProps
  */
 export const Flex: ForwardRef<HTMLElement, FlexProps> = React.forwardRef(
   function Flex(props: FlexProps, ref) {
+    const { sx } = props;
     return (
       <Box
         ref={ref}
         {...props}
-        sx={{
+        sx={theme => ({
           display: 'flex',
-          ...props.sx,
-        }}
+          ...(typeof sx === "function" ? sx(theme) : sx),
+        })}
       />
     )
   }
